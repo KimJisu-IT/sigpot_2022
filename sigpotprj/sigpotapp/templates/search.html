@@ -31,23 +31,44 @@
                 <span class="or"> or </span>
                 <span class="foodType">상관없어요</span>
             </div>
+            
             <h4 class="smallname">희망메뉴</h4>
+            <form action="/check/{{check.id}}/"method="post"></form>
             <p class="plus">식팟과 함께 먹고 싶은 메뉴를 모두 선택해 주세요.</p>
-            <div class="foodType">전체</div>
-            <div class="foodType">한식</div>
+            <input type="checkbox" value="{{menu1_id}}">한식</div>
+            </form>
+
+            <form action="/check/{{check.id}}/"method="post"></form>
+            <input type="checkbox" name="answer2[]" id="answer2" value="2">중식</div>
+            </form>
+
+            <form action="/check/{{check.id}}/"method="post"></form>
+            <input type="checkbox" name="answer3[]" id="answer3" value="3">일식</div>
+            </form>
+
+            <form action="/check/{{check.id}}/"method="post"></form>
+            <div class="foodType" value="{{select_id}}">양식</div>
+            </form>
+
+            <form action="/check/{{check.id}}/"method="post"></form>
+            <div class="foodType" value="{{select_id}}">분식</div>
+            </form>
+
+            <form action="/check/{{check.id}}/"method="post"></form>
+            <div class="foodType" value="{{select_id}}">디저트</div>
+            </form>
+
+
             <div class="foodType">중식</div>
             <div class="foodType">양식</div>
             <div class="foodType">분식</div>
             <div class="foodType">아시안</div>
-            <br/>
-            <div class="foodType">디저트</div>
-            <div class="foodType">카페</div>
-            <div class="foodType">패스트푸드</div>
-            <div class="foodType">편의점</div>
-            <div class="foodType">기타</div>
-            <div class="foodType">상관없어요</div>
+
+            <a href="{% url 'board' %}" value="check_create">나와 딱 맞는 식팟 찾으러 가기</a>
+
+            </form>
         </div>
-        <h2 class="gobtn">나와 딱 맞는 식팟 찾으러 가기</h2>
+        
     </div>
     <script src={% static './js/search.js' %}></script>
 </body>

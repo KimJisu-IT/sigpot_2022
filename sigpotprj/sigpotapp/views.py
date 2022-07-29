@@ -7,9 +7,10 @@
 
 from datetime import timezone
 from pdb import post_mortem
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import FreePostform, PostModelForm, CommentForm
-from .models import FreePost
+from .models import Check, FreePost
 
 
 def main(request):
@@ -34,6 +35,8 @@ def postcreate(request):
     post.title = request.GET['title']
     post.body = request.GET['body']
     post.author = request.user
+
+    print("data : ", request.POST.getlist('answer1[]'))
     post.save()
     return redirect('/detail/' + str(post.id) + '/')
 
@@ -71,3 +74,40 @@ def create_comment(request, post_id):
         finished_form.post = get_object_or_404(FreePost, pk=post_id)
         finished_form.save()
         return redirect('/detail/' + str(post_id) + '/')
+
+
+
+def menu1(request, menu1_id):
+
+    post= FreePost.objects.get(pk=menu1_id)
+    selection = request.POST['menu1']
+
+    menu1.save()
+    return redirect('/board/')
+
+
+
+
+
+
+
+def check(request, check_id):
+
+    check= Check.objects.get(pk=check_id)
+    selection = request.POST['check']
+
+    check= Check.objects.get(check_id=check.id,select_id=selection)
+    check.save()
+
+    print(check)
+    return redirect('/board/' + str(check.id) + '/')
+
+
+
+def check_create(request):
+    check = Check()
+    check.menu= request.GET['menu']
+    check.meal_time= request.GET['meal_time']
+    check.save()
+    return redirect('/home/' + str(check.id) + '/')
+
